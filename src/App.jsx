@@ -118,8 +118,8 @@ function Landing() {
                         headers: { 'x-admin-secret': 'peress2026' }
                       });
                       if (res.ok) {
+                        useGameStore.getState().loadLeaderboard();
                         alert("✅ Berhasil! Semua data telah dihapus dari database.");
-                        window.location.reload();
                       } else {
                         const err = await res.text();
                         alert("❌ Gagal mereset: " + res.status + " " + err);
@@ -145,10 +145,10 @@ function Landing() {
         );
       })}
 
-      <div className="flex gap-12 w-full max-w-6xl items-center z-10">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full max-w-6xl items-center z-10 pt-12 lg:pt-0">
 
         {/* ══ LEFT ══ */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 w-full">
 
           {/* Badge */}
           <div ref={badgeRef}
@@ -161,12 +161,12 @@ function Landing() {
           {/* Title */}
           <div ref={titleRef} style={{ opacity: 0 }} className="mb-4">
             <h1 className="ws-hero overflow-visible"
-              style={{ fontSize: 'clamp(3.5rem,6.5vw,5.8rem)', lineHeight: 1.05, paddingTop: '6px', paddingBottom: '8px' }}>
+              style={{ fontSize: 'clamp(3rem,6.5vw,5.8rem)', lineHeight: 1.05, paddingTop: '6px', paddingBottom: '8px' }}>
               <span style={{ display: 'block', color: '#1E1B4B', textShadow: '0 2px 14px rgba(255,255,255,1), 0 0 6px rgba(255,255,255,1)' }}>Literasi</span>
               <span style={{
                 display: 'block',
                 color: '#FFFFFF',
-                WebkitTextStroke: '3.5px #1E1B4B',
+                WebkitTextStroke: 'clamp(2px, .4vw, 3.5px) #1E1B4B',
                 textShadow: '0 8px 24px rgba(0,0,0,0.3)'
               }}>Digital</span>
             </h1>
@@ -175,28 +175,29 @@ function Landing() {
 
           {/* Taglines */}
           <div className="inline-block px-4 py-2 rounded-2xl mb-6" style={{ background: 'rgba(255,255,255,.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,.8)', boxShadow: '0 4px 16px rgba(0,0,0,.05)' }}>
-            <p className="ws-body text-lg mb-1 font-bold" style={{ color: '#111827' }}>
+            <p className="ws-body text-base lg:text-lg mb-1 font-bold" style={{ color: '#111827' }}>
               Seberapa kritis kamu dalam menggunakan AI?
             </p>
-            <p className="ws-desc text-sm" style={{ color: '#374151', fontWeight: 500 }}>
-              Uji lewat <strong className="ws-body" style={{ color: '#4F46E5' }}>2 mini-game</strong> seru dalam <strong className="ws-body" style={{ color: '#0891B2', fontStyle: 'italic' }}>5 menit</strong>!
+            <p className="ws-caption text-xs lg:text-sm font-medium" style={{ color: '#4B5563' }}>
+              Uji lewat <span className="font-bold text-indigo-600">2 mini-game</span> seru dalam <span className="font-bold text-green-600 italic">5 menit</span>!
             </p>
           </div>
 
-          {/* Form */}
-          <div ref={formRef} style={{ opacity: 0 }} className="max-w-[360px] flex flex-col gap-3">
-
-            {/* Input */}
+          {/* Input & Error */}
+          <div ref={formRef} style={{ opacity: 0 }} className="relative mb-6">
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg" style={{ color: 'rgba(99,102,241,.5)' }}>👤</span>
+              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl" style={{ filter: 'grayscale(0.5)' }}>👤</span>
               <input
-                value={name} onChange={e => setName(e.target.value)}
+                type="text"
+                placeholder="Nama kamu siapa? 😃"
+                value={name}
+                onChange={e => { setName(e.target.value); setErr(false) }}
                 onKeyDown={e => e.key === 'Enter' && start()}
-                placeholder="Nama kamu siapa? 😊"
-                maxLength={25}
-                className="w-full pl-11 pr-4 py-3.5 rounded-2xl ws-body text-sm outline-none transition-all"
+                maxLength={20}
+                className="w-full py-4 pl-14 pr-6 rounded-2xl outline-none ws-body font-bold text-base transition-all"
                 style={{
-                  background: '#FFFFFF',
+                  background: 'rgba(255,255,255,0.95)',
+                  backdropFilter: 'blur(12px)',
                   border: `1.5px solid ${err ? '#EF4444' : 'rgba(99,102,241,.25)'}`,
                   color: '#1F2937',
                   boxShadow: name ? '0 0 0 3px rgba(99,102,241,.12)' : '0 2px 12px rgba(99,102,241,.08)',
@@ -206,13 +207,13 @@ function Landing() {
 
             {/* Previous names */}
             {prevNames.length > 0 && (
-              <div>
-                <p className="ws-caption text-xs mb-2 font-black px-1.5 py-0.5 rounded-lg inline-block" style={{ color: '#111827', background: 'rgba(255,255,255,.6)', backdropFilter: 'blur(4px)' }}>Pernah main? Pilih nick kamu!</p>
+              <div className="mt-3">
+                <p className="ws-caption text-[0.65rem] mb-2 font-black px-1.5 py-0.5 rounded-lg inline-block" style={{ color: '#111827', background: 'rgba(255,255,255,.6)', backdropFilter: 'blur(4px)' }}>Pernah main? Pilih nick kamu!</p>
                 <div className="flex flex-wrap gap-1.5">
                   {prevNames.map((n, i) => (
                     <motion.button key={i} whileHover={{ scale: 1.07, y: -2 }} whileTap={{ scale: .94 }}
                       onClick={() => start(n)}
-                      className="ws-body px-3.5 py-1.5 rounded-xl text-xs font-bold"
+                      className="ws-body px-3 py-1 rounded-xl text-[0.7rem] font-bold"
                       style={{ background: '#FFFFFF', color: '#4F46E5', border: '1px solid rgba(99,102,241,.3)', boxShadow: '0 4px 12px rgba(0,0,0,.08)' }}>
                       {n}
                     </motion.button>
@@ -226,7 +227,7 @@ function Landing() {
               whileHover={{ scale: 1.02, y: -3, boxShadow: '0 20px 48px rgba(34,197,94,.45)' }}
               whileTap={{ scale: .97 }}
               onClick={() => start()}
-              className="ws-btn w-full py-4 rounded-2xl text-base text-white flex items-center justify-between px-6"
+              className="ws-btn mt-6 w-full py-4 rounded-2xl text-base text-white flex items-center justify-between px-6"
               style={{ background: 'linear-gradient(135deg, #16A34A, #22C55E, #10B981)', boxShadow: '0 10px 32px rgba(34,197,94,.38)', border: '1px solid rgba(255,255,255,0.2)' }}>
               <span className="font-bold text-lg text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Mulai Tantangan!</span>
               <span style={{ fontWeight: 800, opacity: .9, fontSize: '1.2rem' }}>→</span>
@@ -234,7 +235,7 @@ function Landing() {
           </div>
 
           {/* Info chips */}
-          <div ref={chipsRef} style={{ opacity: 0 }} className="flex flex-wrap gap-3 mt-6">
+          <div ref={chipsRef} style={{ opacity: 0 }} className="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-3 mt-6 pb-6 lg:pb-0">
             {[
               { ic: '⏱️', label: '5 MENIT', sub: 'Durasi Singkat' },
               { ic: '❤️', label: '3 NYAWA', sub: 'Hati-hati Nyawa' },
@@ -242,12 +243,12 @@ function Landing() {
               { ic: '🎯', label: 'TRUE/FALSE', sub: 'Uji Ketelitian' },
               { ic: '🏆', label: 'LEADERBOARD', sub: 'Bersaing & Belajar' },
             ].map(({ ic, label, sub }) => (
-              <div key={label} className="flex items-center gap-2 px-3 py-1.5 rounded-xl border"
+              <div key={label} className="flex items-center gap-1.5 lg:gap-2 px-2.5 lg:px-3 py-1.5 rounded-xl border"
                 style={{ background: 'rgba(255,255,255,.7)', backdropFilter: 'blur(8px)', borderColor: 'rgba(255,255,255,1)', boxShadow: '0 4px 12px rgba(0,0,0,.04)' }}>
-                <span className="text-lg drop-shadow-sm">{ic}</span>
+                <span className="text-base lg:text-lg drop-shadow-sm">{ic}</span>
                 <div>
-                  <div className="ws-label font-bold" style={{ color: '#1F2937', fontSize: '.62rem' }}>{label}</div>
-                  <div className="ws-caption font-medium" style={{ color: '#4B5563', fontSize: '.58rem' }}>{sub}</div>
+                  <div className="ws-label font-bold" style={{ color: '#1F2937', fontSize: '.55rem' }}>{label}</div>
+                  <div className="ws-caption font-medium hidden sm:block" style={{ color: '#4B5563', fontSize: '.58rem' }}>{sub}</div>
                 </div>
               </div>
             ))}
