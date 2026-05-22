@@ -33,7 +33,7 @@ const useGameStore = create((set, get) => ({
   loadLeaderboard: async () => {
     set({ leaderboardLoading: true })
     try {
-      const res = await fetch('/api/leaderboard')
+      const res = await fetch('/api/leaderboard?t=' + Date.now())
       if (res.ok) {
         const data = await res.json()
         set({ leaderboard: data })

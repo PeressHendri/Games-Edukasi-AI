@@ -103,18 +103,37 @@ function Landing() {
       <div className="fixed pointer-events-none" style={{ bottom: '-8%', right: '-5%', width: '450px', height: '450px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,.07) 0%, transparent 65%)' }} />
 
       {/* Floating icons — bigger & scattered */}
-      {floatIcons.map((ic, i) => (
-        <span key={i} ref={el => iconsRef.current[i] = el}
-          className="fixed pointer-events-none select-none"
-          style={{
-            top: ic.top, left: ic.left, right: ic.right,
-            fontSize: ic.size,
-            filter: 'drop-shadow(0 10px 20px rgba(80,60,200,.2))',
-            lineHeight: 1,
-          }}>
-          {ic.e}
-        </span>
-      ))}
+      {floatIcons.map((ic, i) => {
+        const isTarget = ic.e === '🎯';
+        return (
+          <span key={i} ref={el => iconsRef.current[i] = el}
+            onClick={async () => {
+              if (isTarget) {
+                const pass = window.prompt("Masukkan password admin untuk mereset server:");
+                if (pass === 'peress2026') {
+                  if (window.confirm("YAKIN MENGHAPUS SEMUA SKOR DI SERVER?")) {
+                    await fetch('/api/leaderboard', {
+                      method: 'DELETE',
+                      headers: { 'x-admin-secret': 'peress2026' }
+                    });
+                    window.location.reload();
+                  }
+                } else if (pass) {
+                  alert("Password salah!");
+                }
+              }
+            }}
+            className={`fixed select-none ${isTarget ? 'cursor-pointer pointer-events-auto z-50 hover:scale-110 transition-transform' : 'pointer-events-none'}`}
+            style={{
+              top: ic.top, left: ic.left, right: ic.right,
+              fontSize: ic.size,
+              filter: 'drop-shadow(0 10px 20px rgba(80,60,200,.2))',
+              lineHeight: 1,
+            }}>
+            {ic.e}
+          </span>
+        );
+      })}
 
       <div className="flex gap-12 w-full max-w-6xl items-center z-10">
 
@@ -465,29 +484,6 @@ export default function App() {
           <Screen />
         </motion.div>
       </AnimatePresence>
-
-      {/* Floating Admin Button */}
-      <button 
-        onClick={async () => {
-          const pass = window.prompt("Masukkan password admin (peress2026) untuk reset server:");
-          if (pass === 'peress2026') {
-            if (window.confirm("SANGAT YAKIN INGIN MENGHAPUS SEMUA SKOR DI SERVER?")) {
-              await fetch('/api/leaderboard', {
-                method: 'DELETE',
-                headers: { 'x-admin-secret': 'peress2026' }
-              });
-              window.location.reload();
-            }
-          } else if (pass) {
-            alert("Password salah!");
-          }
-        }}
-        className="fixed bottom-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white cursor-pointer z-50 transition-transform hover:scale-110 active:scale-95 shadow-xl"
-        style={{ background: '#DC2626', opacity: 0.7 }}
-        title="Admin Reset"
-      >
-        🗑️
-      </button>
     </div>
   )
 }
