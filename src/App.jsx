@@ -465,6 +465,29 @@ export default function App() {
           <Screen />
         </motion.div>
       </AnimatePresence>
+
+      {/* Floating Admin Button */}
+      <button 
+        onClick={async () => {
+          const pass = window.prompt("Masukkan password admin (peress2026) untuk reset server:");
+          if (pass === 'peress2026') {
+            if (window.confirm("SANGAT YAKIN INGIN MENGHAPUS SEMUA SKOR DI SERVER?")) {
+              await fetch('/api/leaderboard', {
+                method: 'DELETE',
+                headers: { 'x-admin-secret': 'peress2026' }
+              });
+              window.location.reload();
+            }
+          } else if (pass) {
+            alert("Password salah!");
+          }
+        }}
+        className="fixed bottom-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white cursor-pointer z-50 transition-transform hover:scale-110 active:scale-95 shadow-xl"
+        style={{ background: '#DC2626', opacity: 0.7 }}
+        title="Admin Reset"
+      >
+        🗑️
+      </button>
     </div>
   )
 }
