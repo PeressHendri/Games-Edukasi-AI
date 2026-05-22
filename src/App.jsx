@@ -112,11 +112,21 @@ function Landing() {
                 const pass = window.prompt("Masukkan password admin untuk mereset server:");
                 if (pass === 'peress2026') {
                   if (window.confirm("YAKIN MENGHAPUS SEMUA SKOR DI SERVER?")) {
-                    await fetch('/api/leaderboard', {
-                      method: 'DELETE',
-                      headers: { 'x-admin-secret': 'peress2026' }
-                    });
-                    window.location.reload();
+                    try {
+                      const res = await fetch('/api/leaderboard', {
+                        method: 'DELETE',
+                        headers: { 'x-admin-secret': 'peress2026' }
+                      });
+                      if (res.ok) {
+                        alert("✅ Berhasil! Semua data telah dihapus dari database.");
+                        window.location.reload();
+                      } else {
+                        const err = await res.text();
+                        alert("❌ Gagal mereset: " + res.status + " " + err);
+                      }
+                    } catch (e) {
+                      alert("❌ Error Jaringan: " + e.message);
+                    }
                   }
                 } else if (pass) {
                   alert("Password salah!");
