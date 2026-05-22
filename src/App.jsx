@@ -472,7 +472,12 @@ const SCREENS = {
 
 export default function App() {
   const screen = useGameStore(s => s.currentScreen)
+  const loadLeaderboard = useGameStore(s => s.loadLeaderboard)
   const Screen = SCREENS[screen] || Landing
+
+  useEffect(() => {
+    loadLeaderboard()
+  }, [])
 
   return (
     <div className="relative min-h-screen" style={{ background: '#FFFFFF' }}>
