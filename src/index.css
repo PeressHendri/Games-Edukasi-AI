@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   Work Sans — Typography System
+   
+   Judul utama   → Weight 800, Italic        (Literasi Digital)
+   Sub-judul     → Weight 700, Normal        (nama game, screen title)
+   Badge/label   → Weight 600, Normal caps   (EDUKASI AI KRITIS, Game 1)
+   Body teks     → Weight 400-500, Normal    (deskripsi, paragraf)
+   Aksent/stat   → Weight 700, Italic        (skor, angka penting)
+   Caption kecil → Weight 300, Italic        (tanggal, hint kecil)
+   Button        → Weight 700, Normal        (CTA button)
+   Pernah Main   → Weight 500, Normal        (chip nama)
+═══════════════════════════════════════════ */
+
+/* ── Design Tokens ── */
+:root {
+  --bg:          #FFFFFF;
+  --primary:     #4F46E5;
+  --primary-l:   #6366F1;
+  --primary-xl:  #A5B4FC;
+  --secondary:   #0891B2;
+  --secondary-l: #06B6D4;
+  --tertiary:    #7C3AED;
+  --neutral:     #64748B;
+  --text:        #1E1B4B;
+  --text-muted:  #6B7280;
+  --border:      rgba(79,70,229,0.15);
+  
+  --font-ws: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; width: 100%; margin: 0; overflow: hidden; }
+
+body {
+  font-family: var(--font-ws);
+  font-weight: 400;
+  background: #F4F2FF;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography helpers ── */
+
+/* Judul hero — ExtraBold Italic: terlihat dinamis & energik */
+.ws-hero {
+  font-family: var(--font-ws);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+
+/* Sub-judul / screen title — Bold Normal: tegas & bersih */
+.ws-title {
+  font-family: var(--font-ws);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+/* Label/badge — SemiBold Normal caps: profesional */
+.ws-label {
+  font-family: var(--font-ws);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+
+/* Angka/skor — Bold Italic: menonjol dan berkarakter */
+.ws-score {
+  font-family: var(--font-ws);
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Body teks — Medium Normal: nyaman dibaca */
+.ws-body {
+  font-family: var(--font-ws);
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Deskripsi/paragraf — Regular Normal */
+.ws-desc {
+  font-family: var(--font-ws);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+/* Caption kecil — Light Italic: halus dan subtle */
+.ws-caption {
+  font-family: var(--font-ws);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Button CTA — Bold Normal: kuat dan actionable */
+.ws-btn {
+  font-family: var(--font-ws);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+/* ── Subtle white background pattern ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 800px 600px at 5% 10%,  rgba(79,70,229,.06),   transparent),
+    radial-gradient(ellipse 600px 500px at 95% 85%,  rgba(99,102,241,.05),  transparent),
+    radial-gradient(ellipse 500px 400px at 50% 50%,  rgba(139,92,246,.03),  transparent);
+  animation: bgPulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+  0%   { opacity: .6; }
+  100% { opacity: 1; }
+}
+
+/* ── Glass utilities (light mode) ── */
+.glass {
+  background:      rgba(255,255,255,0.85);
+  border:          1px solid rgba(79,70,229,0.12);
+}
+.glass-strong {
+  background:      rgba(255,255,255,0.96);
+  border:          1px solid rgba(79,70,229,0.18);
+  box-shadow: 0 8px 32px rgba(79,70,229,0.08);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: rgba(79,70,229,.2); border-radius: 3px; }
+
+/* ── Toast ── */
+.toast {
+  padding: 10px 22px; border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(79,70,229,.25);
+  backdrop-filter: blur(14px);
+  font-family: var(--font-ws);
+  font-size: .85rem; font-weight: 600;
+  color: #4F46E5; white-space: nowrap; pointer-events: none;
+  box-shadow: 0 4px 24px rgba(79,70,229,.18);
+}
