@@ -256,7 +256,7 @@ function Landing() {
         </div>
 
         {/* ══ RIGHT: Leaderboard ══ */}
-        <div ref={boardRef} style={{ opacity: 0, flexShrink: 0, width: '420px' }}>
+        <div ref={boardRef} style={{ opacity: 0, flexShrink: 0 }} className="w-full lg:w-[420px] max-w-full lg:max-w-[420px] pb-12 lg:pb-0">
           <div className="rounded-3xl overflow-hidden relative"
             style={{
               background: 'rgba(17, 24, 39, 0.65)',

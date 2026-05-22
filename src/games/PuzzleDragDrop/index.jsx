@@ -335,8 +335,7 @@ export default function PuzzleDragDrop() {
       <HUD gameName="GAME 1" />
 
       {/* ── Main wrapper: full height below HUD ── */}
-      <div className="fixed inset-0 flex flex-col" style={{ top: '52px' }}>
-
+      <div className="flex flex-col min-h-screen" style={{ paddingTop: '52px' }}>
         {/* ── Header ── */}
         <div ref={headerRef} style={{ opacity: 0 }} className="text-center pt-3 pb-2 px-4 flex-shrink-0">
           <div className="flex items-center justify-center gap-3 mb-1">
@@ -362,10 +361,10 @@ export default function PuzzleDragDrop() {
         </div>
 
         {/* ── Left / Right Split ── */}
-        <div className="flex flex-1 gap-3 px-4 pb-4 min-h-0">
+        <div className="flex flex-col lg:flex-row flex-1 gap-3 lg:gap-4 px-4 pb-4 min-h-0">
 
           {/* ══ LEFT PANEL — Pool Kartu ══ */}
-          <div ref={poolRef} style={{ opacity: 0 }} className="flex flex-col w-1/2 min-h-0">
+          <div ref={poolRef} style={{ opacity: 0 }} className="flex flex-col w-full lg:w-1/2 min-h-0">
             {/* Panel label */}
             <div className="flex items-center gap-2 mb-2 flex-shrink-0 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/80 shadow-sm">
               <div className="flex-1 h-px" style={{ background: 'rgba(99,102,241,.25)' }} />
@@ -375,10 +374,10 @@ export default function PuzzleDragDrop() {
               <div className="flex-1 h-px" style={{ background: 'rgba(99,102,241,.25)' }} />
             </div>
 
-            {/* Cards container — 4 cols × 3 rows, grid-controlled height */}
+            {/* Cards container */}
             <div className="flex-1 rounded-2xl p-2.5"
               style={{ background: 'rgba(255,255,255,.5)', border: '1px solid rgba(99,102,241,.12)', boxShadow: '0 4px 20px rgba(99,102,241,.07)' }}>
-              <div className="grid grid-cols-4 grid-rows-3 gap-2 h-full">
+              <div className="grid grid-cols-3 lg:grid-cols-4 grid-rows-4 lg:grid-rows-3 gap-2 h-full min-h-[360px] lg:min-h-0">
                 {(initialCards.length > 0 ? initialCards : sourceCards).map(c => (
                   <PoolCard key={c.id} card={c}
                     isSelected={selectedPoolCard?.id === c.id}
@@ -393,13 +392,15 @@ export default function PuzzleDragDrop() {
 
             {/* Drag hint arrow */}
             <div className="flex items-center justify-center gap-2 mt-2 flex-shrink-0 bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full border border-white shadow-sm self-center">
-              <span className="ws-desc text-xs font-bold" style={{ color: '#1E1B4B' }}>Drag ke kanan</span>
-              <span style={{ color: '#1E1B4B', fontSize: '1.1rem' }}>→</span>
+              <span className="ws-desc text-xs font-bold" style={{ color: '#1E1B4B' }}>
+                <span className="inline lg:hidden">Pilih lalu klik slot di bawah ↓</span>
+                <span className="hidden lg:inline">Drag ke kanan →</span>
+              </span>
             </div>
           </div>
 
           {/* ══ RIGHT PANEL — Slots ══ */}
-          <div ref={gridRef} style={{ opacity: 0 }} className="flex flex-col w-1/2 min-h-0">
+          <div ref={gridRef} style={{ opacity: 0 }} className="flex flex-col w-full lg:w-1/2 min-h-0 mt-4 lg:mt-0">
             {/* Panel label */}
             <div className="flex items-center gap-2 mb-2 flex-shrink-0 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/80 shadow-sm">
               <div className="flex-1 h-px" style={{ background: 'rgba(99,102,241,.25)' }} />
@@ -409,10 +410,10 @@ export default function PuzzleDragDrop() {
               <div className="flex-1 h-px" style={{ background: 'rgba(99,102,241,.25)' }} />
             </div>
 
-            {/* Slots container — 3 cols × 2 rows, grid-controlled height */}
+            {/* Slots container */}
             <div className="flex-1 rounded-2xl p-2.5"
               style={{ background: 'rgba(255,255,255,.7)', backdropFilter:'blur(12px)', border: '1px solid rgba(255,255,255,1)', boxShadow: '0 8px 32px rgba(0,0,0,.08)' }}>
-              <div className="grid grid-cols-3 grid-rows-2 gap-2 h-full">
+              <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 gap-2 h-full min-h-[300px] lg:min-h-0">
                 {Array(6).fill(null).map((_, i) => (
                   <Slot key={i} idx={i}
                     card={slottedCards[i]} locked={lockedMask[i]} isOver={overSlot === i}
