@@ -12,6 +12,23 @@ export default function Leaderboard({ className = '', dark = false }) {
   const playerName  = useGameStore(s => s.playerName)
   const score       = useGameStore(s => s.score)
 
+  const isAdmin = window.location.search.includes('admin=peress')
+
+  const handleReset = async () => {
+    if (window.confirm("YAKIN INGIN MENGHAPUS SEMUA DATA LEADERBOARD?")) {
+      try {
+        const res = await fetch('/api/leaderboard', {
+          method: 'DELETE',
+          headers: { 'x-admin-secret': 'peress2026' }
+        })
+        if (res.ok) window.location.reload()
+        else alert("Gagal mereset: Password salah!")
+      } catch (e) {
+        alert("Error: " + e.message)
+      }
+    }
+  }
+
   if (leaderboard.length === 0) {
     return (
       <div className={`flex flex-col items-center justify-center py-8 text-center ${className}`}>
@@ -124,6 +141,16 @@ export default function Leaderboard({ className = '', dark = false }) {
           </motion.div>
         )
       })}
+
+      {/* ── Admin Reset Button ── */}
+      {isAdmin && (
+        <button onClick={handleReset} 
+          className="mt-6 w-full py-3 rounded-xl font-black text-sm uppercase tracking-wider"
+          style={{ background: '#DC2626', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(220, 38, 38, 0.4)' }}>
+          Hapus Semua Leaderboard (Admin)
+        </button>
+      )}
+
     </div>
   )
 }

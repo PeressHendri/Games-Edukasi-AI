@@ -76,6 +76,20 @@ app.post('/api/leaderboard', (req, res) => {
   });
 });
 
+// DELETE: Reset Leaderboard (Hidden Admin API)
+app.delete('/api/leaderboard', (req, res) => {
+  const secret = req.headers['x-admin-secret'];
+  if (secret !== 'peress2026') { // Password rahasia untuk admin
+    res.status(403).json({ error: 'Akses ditolak!' });
+    return;
+  }
+
+  db.run('DELETE FROM leaderboard', function(err) {
+    if (err) res.status(500).json({ error: err.message });
+    else res.json({ success: true, message: 'Semua skor berhasil dihapus!' });
+  });
+});
+
 // Serve Frontend React (folder dist)
 app.use(express.static(join(__dirname, 'dist')));
 app.use((req, res) => {
