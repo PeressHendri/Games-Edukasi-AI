@@ -35,6 +35,13 @@ export default function Leaderboard({ className = '', dark = false }) {
         <div className="text-4xl mb-3">🚀</div>
         <p className="ws-body text-sm" style={{ color: dark ? 'rgba(255,255,255,.6)' : '#9CA3AF' }}>Belum ada pemain.</p>
         <p className="ws-caption text-xs mt-1" style={{ color: dark ? 'rgba(255,255,255,.4)' : '#D1D5DB' }}>Jadilah yang pertama!</p>
+        {isAdmin && (
+          <button onClick={handleReset} 
+            className="mt-6 w-full py-3 rounded-xl font-black text-sm uppercase tracking-wider"
+            style={{ background: '#DC2626', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(220, 38, 38, 0.4)' }}>
+            Hapus Semua Leaderboard (Admin)
+          </button>
+        )}
       </div>
     )
   }
