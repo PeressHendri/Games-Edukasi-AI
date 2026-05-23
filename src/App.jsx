@@ -25,7 +25,6 @@ function Landing() {
   const [err, setErr] = useState(false)
 
   const containerRef = useRef(null)
-  const badgeRef = useRef(null)
   const titleRef = useRef(null)
   const formRef = useRef(null)
   const chipsRef = useRef(null)
@@ -42,8 +41,7 @@ function Landing() {
       gsap.set(iconsRef.current, { autoAlpha: 0, y: 30, scale: .6 })
       gsap.to(iconsRef.current, { autoAlpha: 1, y: 0, scale: 1, duration: .7, stagger: .1, delay: .1, ease: 'back.out(1.7)' })
 
-      tl.fromTo(badgeRef.current, { autoAlpha: 0, y: -16, scale: .85 }, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(2)' })
-      tl.fromTo(titleRef.current, { autoAlpha: 0, y: 45, skewY: 3 }, { autoAlpha: 1, y: 0, skewY: 0, duration: .7, ease: 'power4.out' }, '-=.2')
+      tl.fromTo(titleRef.current, { autoAlpha: 0, y: 45, skewY: 3 }, { autoAlpha: 1, y: 0, skewY: 0, duration: .7, ease: 'power4.out' })
       tl.fromTo(formRef.current, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .5 }, '-=.25')
       tl.fromTo(chipsRef.current, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: .4 }, '-=.2')
       tl.fromTo(boardRef.current, { autoAlpha: 0, x: 55, scale: .94 }, { autoAlpha: 1, x: 0, scale: 1, duration: .7, ease: 'power3.out' }, '-=.6')
@@ -149,14 +147,6 @@ function Landing() {
 
         {/* ══ LEFT ══ */}
         <div className="flex-1 min-w-0 w-full">
-
-          {/* Badge */}
-          <div ref={badgeRef}
-            className="ws-label inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
-            style={{ background: 'rgba(255,255,255,.85)', color: '#4F46E5', border: '1px solid rgba(255,255,255,1)', fontSize: '.68rem', boxShadow: '0 4px 12px rgba(0,0,0,.08)', backdropFilter: 'blur(4px)' }}>
-            <span style={{ color: '#6366F1' }}>✦</span>
-            Edukasi AI Kritis
-          </div>
 
           {/* Title */}
           <div ref={titleRef} style={{ opacity: 0 }} className="mb-4">
