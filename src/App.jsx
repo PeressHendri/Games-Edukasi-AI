@@ -88,7 +88,7 @@ function Landing() {
   ]
 
   return (
-    <div ref={containerRef} className="fixed inset-0 flex items-center justify-center px-8 overflow-auto"
+    <div ref={containerRef} className="fixed inset-0 overflow-y-auto overflow-x-hidden flex flex-col px-4 sm:px-8 py-12 lg:py-8 lg:justify-center items-center"
       style={{
         backgroundImage: 'url(/bg-truefalse.jpg)',
         backgroundSize: 'cover',
@@ -151,7 +151,7 @@ function Landing() {
           {/* Title */}
           <div ref={titleRef} style={{ opacity: 0 }} className="mb-4">
             <h1 className="ws-hero overflow-visible"
-              style={{ fontSize: 'clamp(3rem,6.5vw,5.8rem)', lineHeight: 1.05, paddingTop: '6px', paddingBottom: '8px' }}>
+              style={{ fontSize: 'clamp(2.2rem,6.5vw,5.8rem)', lineHeight: 1.05, paddingTop: '6px', paddingBottom: '8px' }}>
               <span style={{ display: 'block', color: '#1E1B4B', textShadow: '0 2px 14px rgba(255,255,255,1), 0 0 6px rgba(255,255,255,1)' }}>Literasi</span>
               <span style={{
                 display: 'block',
