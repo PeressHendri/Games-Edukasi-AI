@@ -157,7 +157,7 @@ function ExplanationsModal({ lockedSteps, onProceed, isTimeout }) {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex flex-col items-center justify-center px-4 py-4"
+      className="fixed inset-0 z-[200] overflow-y-auto overflow-x-hidden"
       style={{
         backgroundImage: 'url(/bg-truefalse.jpg)',
         backgroundSize: 'cover',
@@ -166,13 +166,13 @@ function ExplanationsModal({ lockedSteps, onProceed, isTimeout }) {
       }}>
 
       {/* Dark overlay for readability */}
-      <div className="absolute inset-0 z-0" style={{ background: 'rgba(10,10,20,.72)' }} />
+      <div className="fixed inset-0 z-0" style={{ background: 'rgba(10,10,20,.72)' }} />
 
       {/* Content above overlay */}
-      <div className="relative z-10 flex flex-col items-center w-full h-full">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
 
       {/* Header */}
-      <div className="text-center mb-3 flex-shrink-0">
+      <div className="text-center mb-6 flex-shrink-0">
         <div className="text-4xl mb-1">{isTimeout ? '⏰' : '🎉'}</div>
         <h2 className="ws-title text-2xl mb-1" style={{ color: '#FFFFFF' }}>
           {isTimeout ? 'Waktu Habis!' : 'Puzzle Selesai!'}
@@ -182,8 +182,8 @@ function ExplanationsModal({ lockedSteps, onProceed, isTimeout }) {
         </p>
       </div>
 
-      {/* 3-col × 2-row grid, full width */}
-      <div className="grid grid-cols-3 gap-4 w-full flex-1 min-h-0 mb-4">
+      {/* Grid, full width */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full flex-1 mb-8 max-w-6xl">
         {STEP_EXPLANATIONS.map((d, i) => {
           const isLocked = lockedSteps.includes(i)
           return (
@@ -356,7 +356,8 @@ export default function PuzzleDragDrop() {
             <span className="text-2xl" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,.15))' }}>🧩</span>
           </div>
           <p className="ws-desc text-xs font-bold inline-block px-3 py-1 rounded-lg" style={{ color: '#1E1B4B', background:'rgba(255,255,255,.6)', backdropFilter:'blur(4px)' }}>
-            ✦ Susun 6 langkah berpikir kritis — drag dari kiri ke kanan ✦
+            <span className="inline lg:hidden">✦ Susun 6 langkah berpikir kritis — klik/drag ke bawah ✦</span>
+            <span className="hidden lg:inline">✦ Susun 6 langkah berpikir kritis — drag dari kiri ke kanan ✦</span>
           </p>
         </div>
 

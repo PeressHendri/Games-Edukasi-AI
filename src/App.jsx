@@ -164,7 +164,7 @@ function Landing() {
           </div>
 
           {/* Taglines */}
-          <div className="inline-block px-4 py-2 rounded-2xl mb-6" style={{ background: 'rgba(255,255,255,.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,.8)', boxShadow: '0 4px 16px rgba(0,0,0,.05)' }}>
+          <div className="block w-full max-w-[440px] px-4 py-3 rounded-2xl mb-6" style={{ background: 'rgba(255,255,255,.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,.8)', boxShadow: '0 4px 16px rgba(0,0,0,.05)' }}>
             <p className="ws-body text-base lg:text-lg mb-1 font-bold" style={{ color: '#111827' }}>
               Seberapa kritis kamu dalam menggunakan AI?
             </p>
