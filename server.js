@@ -90,8 +90,18 @@ app.delete('/api/leaderboard', (req, res) => {
   });
 });
 
-// Serve Frontend React (folder dist)
-app.use(express.static(join(__dirname, 'dist')));
+// Serve Frontend React (folder dist) dengan Caching Agresif
+app.use(express.static(join(__dirname, 'dist'), {
+  setHeaders: (res, path) => {
+    // Cache file assets (JS/CSS/Image) selama 1 tahun penuh!
+    if (path.includes('/assets/') || path.endsWith('.jpg') || path.endsWith('.png')) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    } else {
+      // index.html tidak boleh di-cache agar selalu mendapat versi terbaru
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
 app.use((req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
