@@ -184,7 +184,7 @@ function Landing() {
           </div>
 
           {/* Input & Error */}
-          <div ref={formRef} style={{ opacity: 0 }} className="relative mb-6">
+          <div ref={formRef} style={{ opacity: 0 }} className="relative mb-6 w-full max-w-[440px]">
             <div className="relative">
               <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl" style={{ filter: 'grayscale(0.5)' }}>👤</span>
               <input
@@ -284,6 +284,13 @@ function Landing() {
           </div>
         </div>
 
+      </div>
+
+      {/* Copyright Footer */}
+      <div className="w-full text-center opacity-70 mt-8 pb-6 lg:absolute lg:bottom-4 lg:pb-0 pointer-events-none z-0">
+        <p className="ws-caption text-[0.65rem] lg:text-[0.7rem] font-bold tracking-wide" style={{ color: '#374151' }}>
+          &copy; 2026 Peres Hendri Virgiawan. All rights reserved.
+        </p>
       </div>
     </div>
   )
