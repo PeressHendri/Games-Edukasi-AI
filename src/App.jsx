@@ -287,10 +287,15 @@ function Landing() {
       </div>
 
       {/* Copyright Footer */}
-      <div className="w-full text-center opacity-70 mt-8 pb-6 lg:absolute lg:bottom-4 lg:pb-0 pointer-events-none z-0">
-        <p className="ws-caption text-[0.65rem] lg:text-[0.7rem] font-bold tracking-wide" style={{ color: '#374151' }}>
+      <div className="w-full text-center opacity-70 hover:opacity-100 transition-opacity mt-8 pb-6 lg:absolute lg:bottom-4 lg:pb-0 z-50">
+        <a 
+          href="https://peres.portofolio.dev/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="ws-caption text-[0.65rem] lg:text-[0.7rem] font-bold tracking-wide hover:underline cursor-pointer inline-block" 
+          style={{ color: '#374151' }}>
           &copy; 2026 Peres Hendri Virgiawan. All rights reserved.
-        </p>
+        </a>
       </div>
     </div>
   )
