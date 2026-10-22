@@ -5,7 +5,10 @@ import useGameStore from '../../store/gameStore'
 import { CORRECT_ORDER, DECOY_CARDS, STEP_EXPLANATIONS } from './data'
 import { questions } from '../TrueOrFalse/questions'
 import { HUD } from '../../components/HUD'
+<<<<<<< HEAD
 import { FikomLogo, InstagramBadge } from '../../components/BrandBadge'
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
 const shuffle = a => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]]; } return b; }
 
@@ -172,6 +175,7 @@ function ExplanationsModal({ lockedSteps, onProceed, isTimeout }) {
       {/* Content above overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
 
+<<<<<<< HEAD
       {/* Institutional Branding */}
       <div className="flex items-center justify-between w-full max-w-6xl mb-4 px-3 py-2 rounded-2xl flex-shrink-0"
         style={{
@@ -193,6 +197,8 @@ function ExplanationsModal({ lockedSteps, onProceed, isTimeout }) {
         <InstagramBadge dark compact />
       </div>
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
       {/* Header */}
       <div className="text-center mb-6 flex-shrink-0">
         <div className="text-4xl mb-1">{isTimeout ? '⏰' : '🎉'}</div>
@@ -357,7 +363,11 @@ export default function PuzzleDragDrop() {
       <HUD gameName="GAME 1" />
 
       {/* ── Main wrapper: full height below HUD ── */}
+<<<<<<< HEAD
       <div className="flex flex-col min-h-screen" style={{ paddingTop: '64px' }}>
+=======
+      <div className="flex flex-col min-h-screen" style={{ paddingTop: '52px' }}>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         {/* ── Header ── */}
         <div ref={headerRef} style={{ opacity: 0 }} className="text-center pt-3 pb-2 px-4 flex-shrink-0">
           <div className="flex items-center justify-center gap-3 mb-1">

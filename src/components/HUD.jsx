@@ -2,7 +2,10 @@ import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import useGameStore from '../store/gameStore'
+<<<<<<< HEAD
 import { FikomLogo, InstagramBadge } from './BrandBadge'
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
 // Light theme HUD
 
@@ -81,6 +84,7 @@ export function HUD({ gameName }) {
 
   return (
     <div ref={hudRef}
+<<<<<<< HEAD
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-4 py-2"
       style={{
         background: 'rgba(255,255,255,.75)',
@@ -98,6 +102,16 @@ export function HUD({ gameName }) {
         </div>
         <Timer />
       </div>
+=======
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2"
+      style={{
+        background: 'rgba(255,255,255,.6)',
+        backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255,255,255,.8)',
+        boxShadow: '0 4px 20px rgba(0,0,0,.08)',
+      }}>
+      <Timer />
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
       {/* Center: score + game badge inline */}
       <div className="flex items-center gap-2">
@@ -110,11 +124,15 @@ export function HUD({ gameName }) {
         )}
       </div>
 
+<<<<<<< HEAD
       {/* Right: Instagram + Lives */}
       <div className="flex items-center gap-2">
         <InstagramBadge compact />
         <LivesDisplay />
       </div>
+=======
+      <LivesDisplay />
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
     </div>
   )
 }

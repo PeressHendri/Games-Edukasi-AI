@@ -4,7 +4,10 @@ import { gsap } from 'gsap'
 import useGameStore from '../../store/gameStore'
 import { STEP_EXPLANATIONS } from './data'
 import { questions } from '../TrueOrFalse/questions'
+<<<<<<< HEAD
 import { FikomLogo, InstagramBadge } from '../../components/BrandBadge'
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
 const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; }
 
@@ -41,6 +44,7 @@ export default function ExplanationPage() {
   const launch = () => { initTF(shuffle(questions)); setScreen('trueorfalse'); startTimer() }
 
   return (
+<<<<<<< HEAD
     <div className="fixed inset-0 flex flex-col items-center justify-center px-4 py-8 overflow-auto" style={{ background:'#FFFFFF' }}>
 
       {/* Brand Header */}
@@ -58,6 +62,9 @@ export default function ExplanationPage() {
         </div>
         <InstagramBadge compact />
       </div>
+=======
+    <div className="fixed inset-0 flex flex-col items-center justify-center px-4 py-10 overflow-auto" style={{ background:'#FFFFFF' }}>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
       <div ref={headerRef} style={{ opacity:0 }} className="text-center mb-5">
         <span className="inline-block px-3 py-1 rounded-full text-[.7rem] font-black uppercase tracking-widest"

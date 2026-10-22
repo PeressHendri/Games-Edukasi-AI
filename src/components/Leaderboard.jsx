@@ -7,6 +7,7 @@ const PODIUM = [
   { medal:'🥉', label:'3rd', bg:'linear-gradient(135deg,#B45309,#D97706)', border:'#B45309', glow:'rgba(180,83,9,.4)'    },
 ]
 
+<<<<<<< HEAD
 const fmtTime = (s) => {
   if (s == null) return null
   const min = Math.floor(s / 60)
@@ -14,6 +15,8 @@ const fmtTime = (s) => {
   return `${min}:${sec}`
 }
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 export default function Leaderboard({ className = '', dark = false }) {
   const leaderboard = useGameStore(s => s.leaderboard)
   const playerName  = useGameStore(s => s.playerName)
@@ -42,7 +45,11 @@ export default function Leaderboard({ className = '', dark = false }) {
           {[1, 0, 2].map((rank) => {
             const e = top3[rank]
             if (!e) return <div key={rank} />
+<<<<<<< HEAD
             const isMe = e.name === playerName && (e.score === score || !score)
+=======
+            const isMe = e.name === playerName && e.score === score
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
             const p = PODIUM[rank]
             const isFirst = rank === 0
             return (
@@ -54,7 +61,11 @@ export default function Leaderboard({ className = '', dark = false }) {
                   background: p.bg,
                   boxShadow: `0 6px 24px ${p.glow}`,
                   border: `2px solid ${isMe ? '#FFFFFF' : p.border}`,
+<<<<<<< HEAD
                   minHeight: isFirst ? '195px' : '165px',
+=======
+                  minHeight: isFirst ? '180px' : '150px',
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
                   justifyContent: 'flex-end',
                 }}>
                 <span style={{ fontSize: isFirst ? '2.4rem' : '2rem', filter:'drop-shadow(0 2px 6px rgba(0,0,0,.4))' }}>
@@ -71,6 +82,7 @@ export default function Leaderboard({ className = '', dark = false }) {
                   </span>
                 )}
                 <p className="font-black mt-1"
+<<<<<<< HEAD
                   style={{ color:'#FFFFFF', fontSize: isFirst ? '1.5rem' : '1.25rem', textShadow:'0 1px 4px rgba(0,0,0,.3)', letterSpacing:'-0.02em' }}>
                   {e.score} <span style={{ fontSize: '.75rem', fontWeight: 700, opacity: 0.9 }}>pts</span>
                 </p>
@@ -83,6 +95,12 @@ export default function Leaderboard({ className = '', dark = false }) {
                   )}
                   <p style={{ color:'rgba(255,255,255,.75)' }}>{e.date}</p>
                 </div>
+=======
+                  style={{ color:'#FFFFFF', fontSize: isFirst ? '1.6rem' : '1.3rem', textShadow:'0 1px 4px rgba(0,0,0,.3)', letterSpacing:'-0.02em' }}>
+                  {e.score}
+                </p>
+                <p style={{ color:'rgba(255,255,255,.7)', fontSize:'.65rem' }}>{e.date}</p>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
               </motion.div>
             )
           })}
@@ -101,7 +119,11 @@ export default function Leaderboard({ className = '', dark = false }) {
       {/* ── Rest (#4+) ── */}
       {rest.map((e, i) => {
         const rank = i + 4
+<<<<<<< HEAD
         const isMe = e.name === playerName && (e.score === score || !score)
+=======
+        const isMe = e.name === playerName && e.score === score
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         return (
           <motion.div key={`rest-${i}`}
             initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }}
@@ -117,7 +139,11 @@ export default function Leaderboard({ className = '', dark = false }) {
               #{rank}
             </span>
 
+<<<<<<< HEAD
             {/* Name & Time */}
+=======
+            {/* Name */}
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold truncate" style={{ color:'#111827' }}>{e.name}</p>
@@ -128,6 +154,7 @@ export default function Leaderboard({ className = '', dark = false }) {
                   </span>
                 )}
               </div>
+<<<<<<< HEAD
               <div className="flex items-center gap-2 text-xs mt-0.5" style={{ color:'#6B7280' }}>
                 {e.timeSpent != null && (
                   <span className="font-semibold text-indigo-600 flex items-center gap-1">
@@ -147,6 +174,16 @@ export default function Leaderboard({ className = '', dark = false }) {
               </span>
               <span className="text-xs font-bold text-gray-400 ml-1">pts</span>
             </div>
+=======
+              <p className="text-xs" style={{ color:'#9CA3AF' }}>{e.date}</p>
+            </div>
+
+            {/* Score */}
+            <span className="text-lg font-black flex-shrink-0"
+              style={{ color: isMe ? '#7C3AED' : '#4338CA', letterSpacing:'-0.02em' }}>
+              {e.score}
+            </span>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
           </motion.div>
         )
       })}

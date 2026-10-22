@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 
+<<<<<<< HEAD
 const LOCAL_STORAGE_KEY = 'ai_game_leaderboard'
 
 const getLocalLeaderboard = () => {
@@ -53,6 +54,8 @@ const saveLocalScore = (name, score, timeSpent, date) => {
   }
 }
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 const useGameStore = create((set, get) => ({
   // Core
   playerName: '',
@@ -79,21 +82,30 @@ const useGameStore = create((set, get) => ({
   // Game over
   gameOverReason: null,
 
+<<<<<<< HEAD
   // Leaderboard (Online via API with LocalStorage Fallback)
   leaderboard: getLocalLeaderboard(),
+=======
+  // Leaderboard (Online via API)
+  leaderboard: [],
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
   leaderboardLoading: false,
 
   loadLeaderboard: async () => {
     set({ leaderboardLoading: true })
+<<<<<<< HEAD
     const localData = getLocalLeaderboard()
     if (localData.length > 0) {
       set({ leaderboard: localData })
     }
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
     try {
       const res = await fetch('/api/leaderboard?t=' + Date.now())
       if (res.ok) {
         const data = await res.json()
+<<<<<<< HEAD
         if (Array.isArray(data) && data.length > 0) {
           set({ leaderboard: data })
           try {
@@ -103,6 +115,12 @@ const useGameStore = create((set, get) => ({
       }
     } catch (err) {
       console.warn('Backend server offline, memuat leaderboard dari localStorage:', err)
+=======
+        set({ leaderboard: data })
+      }
+    } catch (err) {
+      console.error('Gagal mengambil leaderboard:', err)
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
     } finally {
       set({ leaderboardLoading: false })
     }
@@ -270,6 +288,7 @@ const useGameStore = create((set, get) => ({
 
   // Leaderboard
   saveScore: async () => {
+<<<<<<< HEAD
     const { playerName, score, scoreSaved, timeLeft } = get()
     if (scoreSaved || !playerName || !playerName.trim()) return
 
@@ -304,6 +323,26 @@ const useGameStore = create((set, get) => ({
     } catch {}
     set({ leaderboard: [] })
   },
+=======
+    const { playerName, score, scoreSaved } = get()
+    if (scoreSaved) return // prevent duplicate saves per session
+
+    set({ scoreSaved: true })
+    const today = new Date().toLocaleDateString('id-ID')
+
+    try {
+      await fetch('/api/leaderboard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: playerName, score, date: today })
+      })
+      // Reload the leaderboard after saving
+      get().loadLeaderboard()
+    } catch (err) {
+      console.error('Gagal menyimpan skor:', err)
+    }
+  },
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 }))
 
 export default useGameStore

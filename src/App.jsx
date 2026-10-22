@@ -8,7 +8,10 @@ import PuzzleDragDrop from './games/PuzzleDragDrop/index'
 import ExplanationPage from './games/PuzzleDragDrop/ExplanationPage'
 import TrueOrFalse from './games/TrueOrFalse/index'
 import Leaderboard from './components/Leaderboard'
+<<<<<<< HEAD
 import { FikomLogo, InstagramBadge, BrandModalBadge, IG_URL, InstagramIcon } from './components/BrandBadge'
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
 const shuffle = a => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]]; } return b; }
 const fmt = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
@@ -77,6 +80,7 @@ function Landing() {
   // Floating icons config: [emoji, top%, left%|right%side]
   // Bigger, more scattered icons across the whole screen
   const floatIcons = [
+<<<<<<< HEAD
     { e: '🧩', top: '12%', left: '1%', size: '4rem' },  // top-left large
     { e: '💡', top: '48%', left: '0.5%', size: '3.8rem' },  // mid-left
     { e: '🎯', top: '78%', left: '3%', size: '3.2rem' },  // bottom-left
@@ -86,6 +90,17 @@ function Landing() {
     { e: '✨', top: '22%', left: '11%', size: '2.2rem' },  // inner top-left small
     { e: '💫', top: '82%', right: '12%', size: '2.4rem' },  // inner bottom-right small
     { e: '🔍', top: '26%', right: '10%', size: '2.8rem' },  // inner top-right
+=======
+    { e: '🧩', top: '5%', left: '1%', size: '4rem' },  // top-left large
+    { e: '💡', top: '48%', left: '0.5%', size: '3.8rem' },  // mid-left
+    { e: '🎯', top: '78%', left: '3%', size: '3.2rem' },  // bottom-left
+    { e: '🤖', top: '4%', right: '1%', size: '4.5rem' },  // top-right xlarge
+    { e: '📚', top: '38%', right: '0.5%', size: '3.5rem' },  // mid-right
+    { e: '⭐', top: '74%', right: '2%', size: '3.8rem' },  // bottom-right
+    { e: '✨', top: '15%', left: '11%', size: '2.2rem' },  // inner top-left small
+    { e: '💫', top: '82%', right: '12%', size: '2.4rem' },  // inner bottom-right small
+    { e: '🔍', top: '22%', right: '10%', size: '2.8rem' },  // inner top-right
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
   ]
 
   return (
@@ -112,18 +127,32 @@ function Landing() {
                 if (pass === 'peress2026') {
                   if (window.confirm("YAKIN MENGHAPUS SEMUA SKOR DI SERVER?")) {
                     try {
+<<<<<<< HEAD
                       useGameStore.getState().clearLeaderboard();
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
                       const res = await fetch('/api/leaderboard', {
                         method: 'DELETE',
                         headers: { 'x-admin-secret': 'peress2026' }
                       });
                       if (res.ok) {
+<<<<<<< HEAD
                         alert("✅ Berhasil! Semua data leaderboard telah direset.");
                       } else {
                         alert("✅ Leaderboard lokal telah direset.");
                       }
                     } catch (e) {
                       alert("✅ Leaderboard lokal direset (Server offline: " + e.message + ")");
+=======
+                        useGameStore.getState().loadLeaderboard();
+                        alert("✅ Berhasil! Semua data telah dihapus dari database.");
+                      } else {
+                        const err = await res.text();
+                        alert("❌ Gagal mereset: " + res.status + " " + err);
+                      }
+                    } catch (e) {
+                      alert("❌ Error Jaringan: " + e.message);
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
                     }
                   }
                 } else if (pass) {
@@ -143,6 +172,7 @@ function Landing() {
         );
       })}
 
+<<<<<<< HEAD
       {/* ══ TOP BRAND NAVBAR (Transparent & Ringan) ══ */}
       <div className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between"
         style={{
@@ -168,6 +198,9 @@ function Landing() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full max-w-6xl items-center z-10 pt-28 sm:pt-32 lg:pt-28 pb-10">
+=======
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full max-w-6xl items-center z-10 pt-12 lg:pt-0">
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
         {/* ══ LEFT ══ */}
         <div className="flex-1 min-w-0 w-full">
@@ -286,7 +319,11 @@ function Landing() {
                 style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', boxShadow: '0 4px 12px rgba(245,158,11,0.3)' }}>🏆</div>
               <div className="flex-1 min-w-0">
                 <div className="ws-title text-base" style={{ color: '#FFFFFF' }}>Leaderboard</div>
+<<<<<<< HEAD
                 <div className="ws-caption text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>Skor & Waktu Tercepat</div>
+=======
+                <div className="ws-caption text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>Top 10 Pemain</div>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
               </div>
               <span className="ws-label px-2.5 py-1 rounded-full self-center"
                 style={{ background: 'rgba(255,255,255,0.15)', color: '#FFFFFF', fontSize: '.58rem', border: '1px solid rgba(255,255,255,0.2)' }}>TOP 10</span>
@@ -300,6 +337,20 @@ function Landing() {
 
       </div>
 
+<<<<<<< HEAD
+=======
+      {/* Copyright Footer */}
+      <div className="w-full text-center opacity-70 hover:opacity-100 transition-opacity mt-8 pb-6 lg:absolute lg:bottom-4 lg:pb-0 z-50">
+        <a 
+          href="https://peres.portofolio.dev/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="ws-caption text-[0.65rem] lg:text-[0.7rem] font-bold tracking-wide hover:underline cursor-pointer inline-block" 
+          style={{ color: '#374151' }}>
+          &copy; 2026 Peres Hendri Virgiawan. All rights reserved.
+        </a>
+      </div>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
     </div>
   )
 }
@@ -330,9 +381,12 @@ function Recap() {
 
       <div ref={recapRef} style={{ opacity: 0, background: 'rgba(255,255,255,.9)', backdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,1)', boxShadow: '0 20px 60px rgba(0,0,0,.15)' }} className="w-full max-w-md relative z-10 rounded-3xl p-6">
 
+<<<<<<< HEAD
         {/* Institutional Branding */}
         <BrandModalBadge />
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         <div className="glass-strong rounded-3xl p-7 text-center mb-4">
           <div className="text-5xl mb-3">🎓</div>
           <h2 className="ws-title text-xl mb-1" style={{ color: '#1E1B4B' }}>{playerName}</h2>
@@ -395,9 +449,12 @@ function GameOver() {
 
       <div ref={cardRef} style={{ opacity: 0, background: 'rgba(255,255,255,.9)', backdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,1)', boxShadow: '0 20px 60px rgba(0,0,0,.15)' }}
         className="relative z-10 rounded-3xl p-8 text-center max-w-sm w-full">
+<<<<<<< HEAD
         {/* Institutional Branding */}
         <BrandModalBadge />
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         <motion.div animate={{ rotate: [-10, 10, -10], scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 1.5 }}
           className="text-6xl mb-4">{gameOverReason === 'time' ? '⏰' : '💔'}</motion.div>
         <h2 className="font-display text-2xl font-black mb-2" style={{ color: '#1E1B4B' }}>
@@ -461,6 +518,7 @@ function LeaderboardScreen() {
       }}>
 
       <div ref={containerRef} style={{ opacity: 0 }} className="w-full max-w-lg relative z-10">
+<<<<<<< HEAD
         {/* Institutional Branding */}
         <div className="flex items-center justify-between mb-4 px-3.5 py-2.5 rounded-2xl"
           style={{
@@ -483,11 +541,17 @@ function LeaderboardScreen() {
           <InstagramBadge dark compact />
         </div>
 
+=======
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         <div className="text-center mb-6">
           <motion.div animate={{ rotate: [-5, 5, -5], y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 2 }}
             className="text-5xl mb-3">🏆</motion.div>
           <h1 className="font-display text-3xl font-black" style={{ color: '#FFFFFF', textShadow: '0 2px 20px rgba(168,85,247,.8)' }}>Leaderboard</h1>
+<<<<<<< HEAD
           <p className="text-sm mt-1 font-medium" style={{ color: 'rgba(255,255,255,.8)' }}>Top 10 Pemain • Skor Tertinggi & Waktu Tercepat</p>
+=======
+          <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,.7)' }}>Top 10 Pemain Terbaik</p>
+>>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
         </div>
 
         <div className="rounded-3xl p-4 mb-4 max-h-[55vh] overflow-y-auto"
