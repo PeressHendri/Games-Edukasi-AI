@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════
-   Work Sans — Typography System
+   Work Sans — Typography System (FIKOM UKWMS Theme)
    
    Judul utama   → Weight 800, Italic        (Literasi Digital)
    Sub-judul     → Weight 700, Normal        (nama game, screen title)
@@ -15,19 +15,19 @@
    Pernah Main   → Weight 500, Normal        (chip nama)
 ═══════════════════════════════════════════ */
 
-/* ── Design Tokens ── */
+/* ── Design Tokens (FIKOM UKWMS Red & Gold Identity) ── */
 :root {
-  --bg:          #FFFFFF;
-  --primary:     #4F46E5;
-  --primary-l:   #6366F1;
-  --primary-xl:  #A5B4FC;
-  --secondary:   #0891B2;
-  --secondary-l: #06B6D4;
-  --tertiary:    #7C3AED;
+  --bg:          #FFFBF7;
+  --primary:     #990000;
+  --primary-l:   #DC2626;
+  --primary-xl:  #FCA5A5;
+  --secondary:   #D97706;
+  --secondary-l: #F59E0B;
+  --tertiary:    #7F1D1D;
   --neutral:     #64748B;
-  --text:        #1E1B4B;
+  --text:        #2A0808;
   --text-muted:  #6B7280;
-  --border:      rgba(79,70,229,0.15);
+  --border:      rgba(153,0,0,0.16);
   
   --font-ws: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
 }
@@ -38,7 +38,7 @@ html, body, #root { height: 100%; width: 100%; margin: 0; overflow: hidden; }
 body {
   font-family: var(--font-ws);
   font-weight: 400;
-  background: #F4F2FF;
+  background: #1A0808;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -109,14 +109,14 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* ── Subtle white background pattern ── */
+/* ── Subtle background pattern ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 800px 600px at 5% 10%,  rgba(79,70,229,.06),   transparent),
-    radial-gradient(ellipse 600px 500px at 95% 85%,  rgba(99,102,241,.05),  transparent),
-    radial-gradient(ellipse 500px 400px at 50% 50%,  rgba(139,92,246,.03),  transparent);
+    radial-gradient(ellipse 800px 600px at 5% 10%,  rgba(153,0,0,.08),   transparent),
+    radial-gradient(ellipse 600px 500px at 95% 85%,  rgba(220,38,38,.06),  transparent),
+    radial-gradient(ellipse 500px 400px at 50% 50%,  rgba(245,158,11,.04),  transparent);
   animation: bgPulse 12s ease-in-out infinite alternate;
 }
 
@@ -125,30 +125,31 @@ body::before {
   100% { opacity: 1; }
 }
 
-/* ── Glass utilities (light mode) ── */
+/* ── Glass utilities ── */
 .glass {
-  background:      rgba(255,255,255,0.85);
-  border:          1px solid rgba(79,70,229,0.12);
+  background:      rgba(255,255,255,0.88);
+  border:          1px solid rgba(153,0,0,0.14);
 }
 .glass-strong {
   background:      rgba(255,255,255,0.96);
-  border:          1px solid rgba(79,70,229,0.18);
-  box-shadow: 0 8px 32px rgba(79,70,229,0.08);
+  border:          1px solid rgba(153,0,0,0.2);
+  box-shadow: 0 8px 32px rgba(153,0,0,0.08);
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar          { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track    { background: transparent; }
-::-webkit-scrollbar-thumb    { background: rgba(79,70,229,.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb    { background: rgba(153,0,0,.28); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(153,0,0,.45); }
 
 /* ── Toast ── */
 .toast {
   padding: 10px 22px; border-radius: 999px;
-  background: rgba(255,255,255,.96);
-  border: 1px solid rgba(79,70,229,.25);
+  background: rgba(255,255,255,.97);
+  border: 1.5px solid rgba(153,0,0,.3);
   backdrop-filter: blur(14px);
   font-family: var(--font-ws);
-  font-size: .85rem; font-weight: 600;
-  color: #4F46E5; white-space: nowrap; pointer-events: none;
-  box-shadow: 0 4px 24px rgba(79,70,229,.18);
+  font-size: .85rem; font-weight: 700;
+  color: #990000; white-space: nowrap; pointer-events: none;
+  box-shadow: 0 6px 24px rgba(153,0,0,.22);
 }

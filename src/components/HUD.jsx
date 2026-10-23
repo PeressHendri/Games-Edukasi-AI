@@ -2,12 +2,7 @@ import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import useGameStore from '../store/gameStore'
-<<<<<<< HEAD
-import { FikomLogo, InstagramBadge } from './BrandBadge'
-=======
->>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
-
-// Light theme HUD
+import { FikomLogo, InstagramBadge, FIKOM_URL } from './BrandBadge'
 
 export function Timer() {
   const timeLeft = useGameStore(s => s.timeLeft)
@@ -25,11 +20,11 @@ export function Timer() {
 
   return (
     <div ref={timerRef}
-      className="ws-score flex items-center gap-2 px-4 py-2 rounded-full text-lg"
+      className="ws-score flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-base sm:text-lg"
       style={{
-        background: urgent ? 'rgba(239,68,68,.08)' : 'rgba(79,70,229,.06)',
-        border: `1.5px solid ${urgent ? 'rgba(239,68,68,.3)' : 'rgba(79,70,229,.15)'}`,
-        color: urgent ? '#EF4444' : '#4F46E5',
+        background: urgent ? 'rgba(220,38,38,.12)' : 'rgba(153,0,0,.08)',
+        border: `1.5px solid ${urgent ? 'rgba(220,38,38,.45)' : 'rgba(153,0,0,.22)'}`,
+        color: urgent ? '#DC2626' : '#990000',
       }}>
       <span>⏱️</span>
       <span>{fmt(timeLeft)}</span>
@@ -45,7 +40,7 @@ export function LivesDisplay() {
         <motion.span key={i}
           animate={i >= lives ? { scale: .8, opacity: .3 } : { scale: 1, opacity: 1 }}
           transition={{ type: 'spring', bounce: .5 }}
-          className="text-xl">
+          className="text-lg sm:text-xl">
           {i < lives ? '❤️' : '🤍'}
         </motion.span>
       ))}
@@ -59,21 +54,21 @@ export function ScoreDisplay() {
 
   useEffect(() => {
     gsap.fromTo(scoreRef.current,
-      { scale: 1.4, color: '#7C3AED' },
-      { scale: 1, color: '#4F46E5', duration: 0.35, ease: 'back.out(2)' }
+      { scale: 1.4, color: '#D97706' },
+      { scale: 1, color: '#990000', duration: 0.35, ease: 'back.out(2)' }
     )
   }, [score])
 
   return (
-    <div className="ws-score flex items-center gap-2 px-4 py-2 rounded-full text-lg"
-      style={{ background: 'rgba(79,70,229,.06)', border: '1.5px solid rgba(79,70,229,.15)', color: '#4F46E5' }}>
+    <div className="ws-score flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-base sm:text-lg"
+      style={{ background: 'rgba(153,0,0,.08)', border: '1.5px solid rgba(153,0,0,.22)', color: '#990000' }}>
       <span>⭐</span>
       <span ref={scoreRef}>{score}</span>
     </div>
   )
 }
 
-export function HUD({ gameName }) {
+export function HUD({ gameName, gameIcon = '🎯' }) {
   const hudRef = useRef(null)
   useEffect(() => {
     gsap.fromTo(hudRef.current,
@@ -84,55 +79,48 @@ export function HUD({ gameName }) {
 
   return (
     <div ref={hudRef}
-<<<<<<< HEAD
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-4 py-2"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-5 py-2"
       style={{
-        background: 'rgba(255,255,255,.75)',
+        background: 'rgba(255,255,255,.88)',
         backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(255,255,255,.9)',
-        boxShadow: '0 4px 20px rgba(0,0,0,.08)',
+        borderBottom: '1px solid rgba(153,0,0,.18)',
+        boxShadow: '0 4px 20px rgba(0,0,0,.12)',
       }}>
-      {/* Left: Brand + Timer */}
+      {/* Left: Clickable Brand + Timer */}
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/80 backdrop-blur-md border border-indigo-100 shadow-sm" title="Fakultas Ilmu Komunikasi UKWMS">
-          <FikomLogo size={24} className="rounded-md" />
-          <span className="hidden md:inline font-black text-[0.68rem] text-indigo-950 tracking-wider">
+        <motion.a
+          href={FIKOM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-red-200 shadow-sm cursor-pointer hover:border-red-400 transition-colors"
+          title="Kunjungi Website Resmi FIKOM UKWMS (https://fikom.ukwms.ac.id/)"
+        >
+          <FikomLogo size={24} asLink={false} className="rounded-md" />
+          <span className="hidden md:inline font-black text-[0.68rem] tracking-wider" style={{ color: '#7F1D1D' }}>
             FIKOM UKWMS
           </span>
-        </div>
+        </motion.a>
         <Timer />
       </div>
-=======
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2"
-      style={{
-        background: 'rgba(255,255,255,.6)',
-        backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(255,255,255,.8)',
-        boxShadow: '0 4px 20px rgba(0,0,0,.08)',
-      }}>
-      <Timer />
->>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
 
       {/* Center: score + game badge inline */}
       <div className="flex items-center gap-2">
         <ScoreDisplay />
         {gameName && (
-          <span className="ws-label inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full"
-            style={{ background: 'rgba(99,102,241,.1)', color: '#6366F1', fontSize: '.58rem', border: '1px solid rgba(99,102,241,.2)' }}>
-            🧩 {gameName}
+          <span className="ws-label hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full"
+            style={{ background: 'rgba(153,0,0,.1)', color: '#990000', fontSize: '.6rem', border: '1px solid rgba(153,0,0,.25)', fontWeight: 800 }}>
+            {gameIcon} {gameName}
           </span>
         )}
       </div>
 
-<<<<<<< HEAD
       {/* Right: Instagram + Lives */}
       <div className="flex items-center gap-2">
         <InstagramBadge compact />
         <LivesDisplay />
       </div>
-=======
-      <LivesDisplay />
->>>>>>> 6aa0231601f9ef2ec46a251fa68d4f864444715b
     </div>
   )
 }

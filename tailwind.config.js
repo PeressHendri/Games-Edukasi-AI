@@ -10,14 +10,14 @@ export default {
       },
       colors: {
         bg: {
-          DEFAULT: '#0C0B18',
-          2:       '#12112A',
-          3:       '#1A1840',
+          DEFAULT: '#1A0505',
+          2:       '#2A0808',
+          3:       '#3B0A0A',
         },
-        primary:   { DEFAULT: '#4F46E5', light: '#6366F1', glow: 'rgba(79,70,229,.35)' },
-        secondary: { DEFAULT: '#0891B2', light: '#06B6D4', glow: 'rgba(8,145,178,.35)' },
-        tertiary:  { DEFAULT: '#A54100', light: '#C2410C', glow: 'rgba(165,65,0,.35)' },
-        neutral:   { DEFAULT: '#777681', light: '#A1A1AA' },
+        primary:   { DEFAULT: '#990000', light: '#DC2626', glow: 'rgba(153,0,0,.35)' },
+        secondary: { DEFAULT: '#D97706', light: '#F59E0B', glow: 'rgba(217,119,6,.35)' },
+        tertiary:  { DEFAULT: '#7F1D1D', light: '#B91C1C', glow: 'rgba(127,29,29,.35)' },
+        neutral:   { DEFAULT: '#6B7280', light: '#9CA3AF' },
       },
       animation: {
         'float':       'float 6s ease-in-out infinite',
